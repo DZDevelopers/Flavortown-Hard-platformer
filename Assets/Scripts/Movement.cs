@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float climbSpeed = 4f;
+    [SerializeField] private Transform GroundChecker;
+    private bool isGrounded;
     private Rigidbody2D rb;
     private PlayerInput input;
     public InputSystem_Actions actions;
@@ -39,7 +41,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (ctx.performed)
         {
-            rb.linearVelocityY = jumpForce;
+            if (isGrounded)
+            {
+                rb.linearVelocityY = jumpForce;
+            }
         }
     }
 
@@ -47,5 +52,19 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         rb.linearVelocityX = moveSpeed * move;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = true;
+        }
+    }
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            isGrounded = false;
+        }
     }
 }
