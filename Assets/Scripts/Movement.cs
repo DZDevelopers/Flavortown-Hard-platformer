@@ -94,6 +94,10 @@ public class PlayerMovement : MonoBehaviour
             isClimbing = true;
             rb.gravityScale =0;
         }
+        if (collision.gameObject.tag == "Finish")
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
