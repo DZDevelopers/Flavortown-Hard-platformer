@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -75,6 +76,11 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
     }
+    void Death()
+    {
+        Destroy(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
     void FixedUpdate()
     {
         rb.linearVelocityX = moveSpeed * move;
@@ -95,6 +101,13 @@ public class PlayerMovement : MonoBehaviour
         {
             isClimbing = false;
             rb.gravityScale =1;
+        }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Trap")
+        {
+            Death();
         }
     }
 }

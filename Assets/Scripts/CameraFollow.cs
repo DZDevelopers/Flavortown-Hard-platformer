@@ -28,9 +28,18 @@ public class CameraFollow : MonoBehaviour
             ref velocity,
             smoothTime
         );
-        if (target.position.x < -2)
+        if (target.position.x < -2f)
         {
-            transform.position = new Vector3 (-2, target.position.y,transform.position.z);
+            transform.position = new Vector3 (-2f, target.position.y,transform.position.z);
+        }
+        if (target.position.y < 0.5f)
+        {
+            if (target.position.x < -2f)
+        {
+            transform.position = new Vector3 (-2f,0.5f,transform.position.z);
+        }
+        else
+            transform.position = new Vector3 (target.position.x,0.5f,transform.position.z);
         }
     }
 }
