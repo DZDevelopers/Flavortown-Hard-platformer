@@ -8,7 +8,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 6f;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float climbSpeed = 4f;
-    [SerializeField] private Transform GroundChecker;
     private bool isGrounded;
     private bool isClimbing;
     private int Dir = 1;
@@ -16,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public InputSystem_Actions actions;
     private float move;
     private float climb;
+    public GroundCheck GC;
      void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,31 +62,25 @@ public class PlayerMovement : MonoBehaviour
         {
             Dir = -1;
         }
-        if (move == 0)
-        {
-            Dir = Dir * 1;
-        }
         if (isClimbing)
         {
             rb.linearVelocityY = climbSpeed * climb;
         }
-        rb.linearVelocityX = moveSpeed * move;
-        transform.localScale = new Vector2(Math.Abs(transform.localScale.x) * Dir, transform.localScale.y); 
-    }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+        if (GC.isGrounded)
         {
             isGrounded = true;
         }
-    }
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+        if (!GC.isGrounded)
         {
             isGrounded = false;
         }
     }
+    void FixedUpdate()
+    {
+        rb.linearVelocityX = moveSpeed * move;
+        transform.localScale = new Vector2(Math.Abs(transform.localScale.x) * Dir, transform.localScale.y); 
+    }
+
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Ladder")

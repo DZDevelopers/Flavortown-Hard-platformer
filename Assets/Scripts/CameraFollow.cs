@@ -12,13 +12,6 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Vector2 offset;
 
     private Vector3 velocity = Vector3.zero;
-void Update()
-    {
-        if (target.position.x < 0)
-        {
-            target.position = new Vector2 (0, target.position.y);
-        }
-    }
     void LateUpdate()
     {
 
@@ -28,11 +21,16 @@ void Update()
             transform.position.z
         );
 
-        transform.position = Vector3.SmoothDamp(
+        transform.position = Vector3.SmoothDamp
+        (
             transform.position,
             targetPosition,
             ref velocity,
             smoothTime
         );
+        if (target.position.x < -2)
+        {
+            transform.position = new Vector3 (-2, target.position.y,transform.position.z);
+        }
     }
 }
