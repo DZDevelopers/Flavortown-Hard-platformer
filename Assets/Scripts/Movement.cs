@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     private float move;
     private float climb;
     public GroundCheck GC;
+    public Animator anime;
      void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,10 +59,17 @@ public class PlayerMovement : MonoBehaviour
         if (move > 0)
         {
             Dir = 1;
+            anime.SetBool("IsWalking",true);
         }
         if (move < 0)
         {
             Dir = -1;
+            anime.SetBool("IsWalking",true);
+        }
+        if (move == 0)
+        {
+            Dir = Dir * 1;
+            anime.SetBool("IsWalking",false);
         }
         if (isClimbing)
         {
