@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 7b60045f420f6e3449c3cdfd36d4314a
+guid: 566391af0bd755949b08646741109a41
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 8
+  fontSize: 16
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - stylish6x5
+  - Lower Pixel
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

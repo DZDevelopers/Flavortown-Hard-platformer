@@ -1,15 +1,15 @@
 fileFormatVersion: 2
-guid: 7b60045f420f6e3449c3cdfd36d4314a
+guid: a8e4ef3897c36b545a97ac60f8b04385
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 8
+  fontSize: 16
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - stylish6x5
+  - ArcadeClassic
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
